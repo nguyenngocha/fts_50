@@ -46,6 +46,9 @@ en:
   flash:
     create_exam_sucess: "Created exam sucess"
     create_exam_failed: "Create exam failed"
+    finished: "You've finished exam"
+    error_finished: "Error finished exam"
+    subject_no_question: "No questions to create exams"
   exams:
     index:
       title: "Examination List"

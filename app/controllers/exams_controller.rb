@@ -1,5 +1,7 @@
 class ExamsController < ApplicationController
   load_and_authorize_resource
+  before_action :check_subject, only: [:create]
+
   def index
     @subjects = Subject.all 
     @exam = Exam.new
@@ -52,5 +54,13 @@ class ExamsController < ApplicationController
   def exam_params
     params.require(:exam).permit :subject_id, :status,
       results_attributes: [:id, :answer_id]      
+  end
+
+  def check_subject
+    @subject = Subject.find params[:exam][:subject_id]
+    if @subject.questions.size < 1
+      flash.now[:danger] = t "flashs.subject_no_question"
+      redirect_to exams_path
+    end
   end
 end
