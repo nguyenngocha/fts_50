@@ -2,6 +2,7 @@
 <div class="container">
   <div class="row">
     <%= form_for @exam do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
       <div class="col-md-4">
         <%= f.collection_select :subject_id, @subjects, :id, :content, {},
           class: "form-control" %>
